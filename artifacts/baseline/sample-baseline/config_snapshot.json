@@ -1,0 +1,53 @@
+{
+  "project": {
+    "name": "Guardify"
+  },
+  "artifacts": {
+    "root": "artifacts"
+  },
+  "preprocessing": {
+    "lowercase": true,
+    "transliterate": false,
+    "keep_hashtag_text": true
+  },
+  "datasets": [
+    {
+      "name": "hasoc_proxy",
+      "type": "hasoc_csv",
+      "path": "data/external/hasoc_proxy.csv",
+      "text_column": "text",
+      "label_column": "task_1"
+    }
+  ],
+  "training": {
+    "task": "baseline",
+    "test_size": 0.25,
+    "val_size": 0.25,
+    "random_state": 42,
+    "stratify": true,
+    "output_name": "sample-baseline",
+    "kfold": 3
+  },
+  "baseline": {
+    "models": [
+      "logistic_regression",
+      "linear_svm"
+    ],
+    "ngram_range": [
+      1,
+      2
+    ],
+    "min_df": 1,
+    "max_features": 3000
+  },
+  "transformer": {
+    "model_name": "google/muril-base-cased",
+    "epochs": 2,
+    "batch_size": 4,
+    "learning_rate": 2e-05,
+    "max_length": 128,
+    "dropout": 0.3
+  },
+  "_config_path": "/Users/hashirahmad/Developer/FYP/configs/baseline.yaml",
+  "_project_root": "/Users/hashirahmad/Developer/FYP"
+}

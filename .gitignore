@@ -1,0 +1,23 @@
+# Python caches & virtual environment
+__pycache__/
+*.pyc
+venv/
+.venv/
+.pytest_cache/
+
+# Local Environment files
+.env
+apps/api/.env
+
+# Node & Frontend build
+node_modules/
+apps/web/dist/
+
+# OS Specific
+.DS_Store
+
+# Large or zip files
+*.zip
+
+# Large Models
+artifacts/transformer/

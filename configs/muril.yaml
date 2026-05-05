@@ -1,0 +1,32 @@
+project:
+  name: Guardify
+
+datasets:
+  - name: hasoc_proxy
+    type: hasoc_csv
+    path: data/external/hasoc_balanced.csv
+    text_column: text
+    label_column: task_1
+
+preprocessing:
+  lowercase: true
+  transliterate: false
+  keep_hashtag_text: true
+
+training:
+  task: transformer
+  test_size: 0.25
+  val_size: 0.25
+  random_state: 42
+  output_name: sample-muril
+
+transformer:
+  model_name: google/muril-base-cased
+  epochs: 1
+  batch_size: 16
+  learning_rate: 0.00002
+  max_length: 64
+  dropout: 0.3
+
+artifacts:
+  root: artifacts

@@ -1,0 +1,4 @@
+id,text,original_label,binary_label,source,language_hint,split,normalized_text,flagged_tokens,prediction
+sample_fixture-4,Tu kitna useless banda hai bro don't talk to me,Bullying,Bullying,sample_fixture,latin,unspecified,tu kitna [ABUSIVE] banda hai bro don t talk to me,['useless'],Non-Bullying
+sample_fixture-5,Hope you have a great day,Non-Bullying,Non-Bullying,sample_fixture,latin,unspecified,hope you have a great day,[],Bullying
+sample_fixture-6,Tumhara attitude bohot cheap hai,Bullying,Bullying,sample_fixture,latin,unspecified,tumhara attitude bohot [ABUSIVE] hai,['cheap'],Non-Bullying

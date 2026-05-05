@@ -1,0 +1,159 @@
+{
+  "model_type": "baseline",
+  "model_name": "linear_svm",
+  "created_at": "2026-04-28T18:34:59.616428+00:00",
+  "metrics": {
+    "accuracy": 0.921,
+    "precision_macro": 0.8457089536956895,
+    "recall_macro": 0.9019643246889819,
+    "f1_macro": 0.8698240647518172,
+    "f1_weighted": 0.9239655379808889,
+    "confusion_matrix": [
+      [
+        441,
+        64
+      ],
+      [
+        173,
+        2322
+      ]
+    ],
+    "classification_report": {
+      "Non-Bullying": {
+        "precision": 0.7182410423452769,
+        "recall": 0.8732673267326733,
+        "f1-score": 0.7882037533512064,
+        "support": 505.0
+      },
+      "Bullying": {
+        "precision": 0.9731768650461022,
+        "recall": 0.9306613226452906,
+        "f1-score": 0.9514443761524278,
+        "support": 2495.0
+      },
+      "accuracy": 0.921,
+      "macro avg": {
+        "precision": 0.8457089536956895,
+        "recall": 0.9019643246889819,
+        "f1-score": 0.8698240647518172,
+        "support": 3000.0
+      },
+      "weighted avg": {
+        "precision": 0.9302626682247966,
+        "recall": 0.921,
+        "f1-score": 0.9239655379808889,
+        "support": 3000.0
+      }
+    },
+    "per_source": {
+      "hasoc_proxy": {
+        "rows": 3000,
+        "f1_macro": 0.8698240647518172,
+        "accuracy": 0.921
+      }
+    },
+    "validation_comparison": {
+      "logistic_regression": {
+        "accuracy": 0.9226666666666666,
+        "precision_macro": 0.8459246014985637,
+        "recall_macro": 0.9179705946546559,
+        "f1_macro": 0.8753781628162817,
+        "f1_weighted": 0.9263003071140449,
+        "confusion_matrix": [
+          [
+            460,
+            45
+          ],
+          [
+            187,
+            2308
+          ]
+        ],
+        "classification_report": {
+          "Non-Bullying": {
+            "precision": 0.7109737248840804,
+            "recall": 0.9108910891089109,
+            "f1-score": 0.7986111111111112,
+            "support": 505.0
+          },
+          "Bullying": {
+            "precision": 0.9808754781130472,
+            "recall": 0.9250501002004008,
+            "f1-score": 0.9521452145214522,
+            "support": 2495.0
+          },
+          "accuracy": 0.9226666666666666,
+          "macro avg": {
+            "precision": 0.8459246014985637,
+            "recall": 0.9179705946546559,
+            "f1-score": 0.8753781628162817,
+            "support": 3000.0
+          },
+          "weighted avg": {
+            "precision": 0.9354420163195045,
+            "recall": 0.9226666666666666,
+            "f1-score": 0.9263003071140449,
+            "support": 3000.0
+          }
+        }
+      },
+      "linear_svm": {
+        "accuracy": 0.9293333333333333,
+        "precision_macro": 0.8622609164628157,
+        "recall_macro": 0.9030258536875732,
+        "f1_macro": 0.880651776411987,
+        "f1_weighted": 0.9312135187259114,
+        "confusion_matrix": [
+          [
+            436,
+            69
+          ],
+          [
+            143,
+            2352
+          ]
+        ],
+        "classification_report": {
+          "Non-Bullying": {
+            "precision": 0.7530224525043178,
+            "recall": 0.8633663366336634,
+            "f1-score": 0.8044280442804428,
+            "support": 505.0
+          },
+          "Bullying": {
+            "precision": 0.9714993804213135,
+            "recall": 0.942685370741483,
+            "f1-score": 0.9568755085435313,
+            "support": 2495.0
+          },
+          "accuracy": 0.9293333333333333,
+          "macro avg": {
+            "precision": 0.8622609164628157,
+            "recall": 0.9030258536875732,
+            "f1-score": 0.880651776411987,
+            "support": 3000.0
+          },
+          "weighted avg": {
+            "precision": 0.9347224308886192,
+            "recall": 0.9293333333333333,
+            "f1-score": 0.9312135187259114,
+            "support": 3000.0
+          }
+        }
+      }
+    },
+    "kfold": {
+      "logistic_regression": [
+        0.8811034404085222,
+        0.8679132736219696,
+        0.8749800923713967
+      ],
+      "linear_svm": [
+        0.886059042075829,
+        0.8825052252479664,
+        0.8935226889374113
+      ]
+    }
+  },
+  "config_path": "/Users/hashirahmad/Developer/FYP/configs/baseline.yaml"
+}
