@@ -2,6 +2,14 @@
 
 Guardify is a bilingual cyberbullying detection platform for English and Hinglish social text. This version upgrades the original starter scripts into a modular NLP package with dataset adapters, deterministic preprocessing, baseline and transformer training flows, a FastAPI backend, and a React frontend.
 
+## 🌐 Live Demo
+
+The project is actively deployed on free-tier cloud infrastructure:
+- **Frontend (Vercel):** [https://guardify-taupe.vercel.app](https://guardify-taupe.vercel.app)
+- **Backend API (Render):** [https://guardify-tq9e.onrender.com](https://guardify-tq9e.onrender.com)
+
+*(Note: The Render backend sleeps after 15 minutes of inactivity. The first request may take ~50 seconds to wake up the server.)*
+
 ## What is included
 
 - Canonical dataset ingestion for sample, HASOC-style, TRAC-style, CSV, and JSON sources
@@ -11,6 +19,7 @@ Guardify is a bilingual cyberbullying detection platform for English and Hinglis
 - Shared model bundle format for training, evaluation, and API inference
 - FastAPI endpoints for health, model info, and prediction
 - React app for quick interactive moderation demos
+- **Dockerized Backend** ready for PaaS deployment (Render, Heroku, etc.)
 
 ## Project layout
 
@@ -141,6 +150,20 @@ datasets:
 - The bundled `data/raw/data.csv` file is only a demo fixture.
 - MuRIL is the default transformer path; XLM-R, Bi-LSTM, and hybrid models are future extensions.
 - `flagged_tokens` are lexicon/rule-based in this version, not model explanations.
+
+## Deployment
+
+The project is configured for easy deployment to containerized PaaS platforms (like Render or Heroku) and static frontend hosts (like Vercel or Netlify).
+
+### Backend (Docker / Render)
+1. The backend uses the provided `Dockerfile`.
+2. Ensure you set `GUARDIFY_MODEL_BUNDLE` and `CORS_ORIGINS` in the deployment environment.
+3. The server automatically binds to `$PORT` making it compatible with cloud providers.
+
+### Frontend (Vite / Vercel)
+1. Point your host to the `apps/web` root directory.
+2. Set the `VITE_API_BASE_URL` environment variable to your live backend URL (e.g., `https://my-backend.onrender.com`).
+3. Deploy as a standard Vite React app.
 
 ## Documentation
 

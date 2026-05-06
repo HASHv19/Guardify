@@ -482,6 +482,34 @@ The loader and schema automatically handle HASOC, TRAC, and custom formats.
 
 ---
 
+### Step 10 – Deploy to the Cloud (Free Tier)
+
+When you are ready to show your project to the world, you can host it for free using Render (for the backend) and Vercel (for the frontend).
+
+**1. Prepare GitHub**
+Make sure your project is pushed to a GitHub repository.
+
+**2. Deploy Backend to Render**
+1. Go to [Render](https://render.com) and create a **Web Service**.
+2. Connect your GitHub repository.
+3. Render will automatically detect the `Dockerfile`.
+4. Add these Environment Variables:
+   - `GUARDIFY_MODEL_BUNDLE` = `artifacts/baseline/sample-baseline`
+   - `CORS_ORIGINS` = `*`
+5. Click **Deploy**. Once it's Live, copy the provided URL (e.g., `https://guardify-xxx.onrender.com`).
+
+**3. Deploy Frontend to Vercel**
+1. Go to [Vercel](https://vercel.com) and click **Add New -> Project**.
+2. Import your GitHub repository.
+3. **CRITICAL:** Go to the Project Settings -> **Root Directory** and change it to `apps/web`.
+4. Go to **Environment Variables** and add:
+   - `VITE_API_BASE_URL` = `https://guardify-xxx.onrender.com` (Your exact Render URL with no trailing slash).
+5. Click **Deploy**.
+
+*Note: Render free instances sleep after 15 minutes of inactivity. When someone visits your Vercel site after it's been asleep, the very first request will take ~50 seconds while the backend wakes up.*
+
+---
+
 ## ⚠️ Common Issues & Solutions
 
 **"Model bundle is not configured" from API**
