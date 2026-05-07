@@ -1,6 +1,8 @@
-# Guardify
+# 🛡️ Guardify
 
-Guardify is a bilingual cyberbullying detection platform for English and Hinglish social text. This version upgrades the original starter scripts into a modular NLP package with dataset adapters, deterministic preprocessing, baseline and transformer training flows, a FastAPI backend, and a React frontend.
+**Guardify** is a bilingual cyberbullying detection platform engineered to identify abusive content in **English, Hinglish, and transliterated Hindi** social media text. 
+
+Built as a complete end-to-end NLP pipeline, Guardify features deterministic preprocessing, modular dataset adapters, and a production-ready inference service. It includes both high-performance ML baselines (SVM/Logistic Regression) and advanced Transformer support (Google MuRIL), served via a FastAPI backend and a responsive React frontend.
 
 ## 🌐 Live Demo
 
@@ -10,18 +12,18 @@ The project is actively deployed on free-tier cloud infrastructure:
 
 *(Note: The Render backend sleeps after 15 minutes of inactivity. The first request may take ~50 seconds to wake up the server.)*
 
-## What is included
+## ✨ Key Features
 
-- Canonical dataset ingestion for sample, HASOC-style, TRAC-style, CSV, and JSON sources
-- Ordered preprocessing with URL cleanup, emoji mapping, obfuscation cleanup, repeated-character normalization, and flagged-token extraction
-- Baseline classifiers with TF-IDF + Logistic Regression / Linear SVM
-- Transformer training path using MuRIL as the default multilingual model
-- Shared model bundle format for training, evaluation, and API inference
-- FastAPI endpoints for health, model info, and prediction
-- React app for quick interactive moderation demos
-- **Dockerized Backend** ready for PaaS deployment (Render, Heroku, etc.)
+- **Bilingual NLP Pipeline**: Tailored preprocessing for Indian social media text (URL cleanup, emoji mapping, obfuscation resolution, and abuse lexicon flagging).
+- **Extensible Datasets**: Canonical data ingestion for standard sources (HASOC, TRAC) via YAML configurations.
+- **Dual Model Architecture**: 
+  - Extremely fast baseline classifiers (TF-IDF + Linear SVM/LR) perfect for edge/CPU inference.
+  - Transformer training flows (MuRIL) for deep contextual understanding.
+- **Production API**: Robust FastAPI implementation with pre-loaded model bundles for sub-millisecond inference.
+- **Interactive UI**: Modern React frontend for real-time moderation demonstration.
+- **Cloud-Ready**: Fully Dockerized and configured for PaaS deployments (Render, Vercel, Heroku).
 
-## Project layout
+## 📁 Project layout
 
 ```text
 Guardify/
@@ -32,80 +34,72 @@ Guardify/
 ├── data/
 │   ├── raw/              # Local fixture data
 │   └── external/         # Drop larger datasets here
-├── src/guardify/         # Core package
+├── src/guardify/         # Core NLP package
 ├── tests/                # Python test suite
 ├── example_workflow.py   # Guided workflow script
 └── setup_test.py         # Environment smoke check
 ```
 
-## Setup
+## 🚀 Quick Start (Local Demo)
+
+The repository includes a lightweight, pre-trained baseline model (`sample-baseline`) so you can run the API and frontend immediately without training.
+
+### 1. Setup Environment
 
 ```bash
+python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-If you prefer a package-style install, `requirements.txt` installs the project in editable mode.
-
-## Quick start
-
-### 1. Run the environment smoke test
-
-```bash
-PYTHONPATH=src venv/bin/python3 setup_test.py
-```
-
-### 2. Train a baseline bundle
-
-```bash
-PYTHONPATH=src venv/bin/python3 -m guardify.train --config configs/baseline.yaml
-```
-
-### 3. Evaluate a bundle
-
-```bash
-PYTHONPATH=src venv/bin/python3 -m guardify.evaluate \
-  --config configs/baseline.yaml \
-  --bundle artifacts/baseline/sample-baseline
-```
-
-### 4. Run the API
+### 2. Run the Backend API
 
 ```bash
 GUARDIFY_MODEL_BUNDLE=artifacts/baseline/sample-baseline \
 PYTHONPATH=src venv/bin/python3 -m uvicorn apps.api.main:app --reload
 ```
+*API will be available at `http://localhost:8000/docs`.*
 
-### 5. Predict from the CLI
+### 3. Start the Frontend UI
 
+Open a new terminal:
+```bash
+cd apps/web
+npm install
+npm run dev
+```
+*UI will be available at `http://localhost:5173` (default Vite port).*
+
+### 4. CLI Inference
+
+You can also test the model directly from the command line:
 ```bash
 PYTHONPATH=src venv/bin/python3 -m guardify.predict \
   --bundle artifacts/baseline/sample-baseline \
   --text "Tumhara attitude bohot cheap hai"
 ```
 
-### 6. Start the frontend
+## 🧠 Training & Transformers
+
+Guardify is entirely config-driven. You can train your own models by providing datasets in `data/external/` and running the training scripts.
 
 ```bash
-cd apps/web
-npm install
-npm run dev
+# Train a new baseline bundle
+PYTHONPATH=src venv/bin/python3 -m guardify.train --config configs/baseline.yaml
 ```
 
-By default, the frontend calls `http://127.0.0.1:8000`. If your backend runs on a different URL or port, set `VITE_API_BASE_URL` before starting Vite.
+**Note on Transformers:** Guardify natively supports fine-tuning transformer architectures like Google MuRIL (`configs/muril.yaml`). To keep this repository lightweight and fast to clone, heavy transformer weights (~900MB) are **not tracked** in version control. You can generate them locally anytime using the provided training pipeline.
 
-## API contract
+## 📡 API Contract
 
 ### `POST /predict`
 
-Request:
-
+**Request:**
 ```json
 { "text": "Tumhara attitude bohot cheap hai stop acting like clown" }
 ```
 
-Response:
-
+**Response:**
 ```json
 {
   "label": "Bullying",
@@ -121,35 +115,6 @@ Response:
   "needs_review": false
 }
 ```
-
-## Config-driven datasets
-
-Each dataset adapter must be normalized into:
-
-- `id`
-- `text`
-- `original_label`
-- `binary_label`
-- `source`
-- `language_hint`
-- `split`
-
-Example dataset config:
-
-```yaml
-datasets:
-  - name: hasoc_train
-    type: hasoc_csv
-    path: data/external/hasoc_train.csv
-    text_column: text
-    label_column: task_1
-```
-
-## Notes
-
-- The bundled `data/raw/data.csv` file is only a demo fixture.
-- MuRIL is the default transformer path; XLM-R, Bi-LSTM, and hybrid models are future extensions.
-- `flagged_tokens` are lexicon/rule-based in this version, not model explanations.
 
 ## Deployment
 

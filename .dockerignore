@@ -6,5 +6,8 @@ __pycache__/
 .pytest_cache/
 .git/
 .DS_Store
-Guardify_Project.zip
+*.zip
 apps/web/dist/
+artifacts/transformer/
+.env
+apps/api/.env

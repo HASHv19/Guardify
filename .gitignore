@@ -4,6 +4,7 @@ __pycache__/
 venv/
 .venv/
 .pytest_cache/
+src/*.egg-info/
 
 # Local Environment files
 .env

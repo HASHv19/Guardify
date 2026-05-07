@@ -48,6 +48,6 @@
     "max_length": 128,
     "dropout": 0.3
   },
-  "_config_path": "/Users/hashirahmad/Developer/FYP/configs/baseline.yaml",
-  "_project_root": "/Users/hashirahmad/Developer/FYP"
+  "_config_path": "configs/baseline.yaml",
+  "_project_root": "."
 }
